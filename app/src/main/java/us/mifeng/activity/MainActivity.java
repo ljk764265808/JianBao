@@ -13,6 +13,7 @@ import us.mifeng.adapter.Framework_Adapter;
 import us.mifeng.fragment.Fragment_Goods;
 import us.mifeng.fragment.Fragment_Mine;
 import us.mifeng.fragment.Fragment_Release;
+import us.mifeng.utils.MFresco;
 
 /**
  * Created by k on 2016/11/24.
