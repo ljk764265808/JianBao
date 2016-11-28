@@ -18,7 +18,6 @@ import us.mifeng.utils.MFresco;
 /**
  * Created by k on 2016/11/24.
  */
-
 public class MainActivity extends FragmentActivity {
     private ArrayList<Fragment> list;
     private RadioGroup rg;
