@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
  * Created by k on 2016/11/24.
  */
 
-public class MPixel {
+public class PixelUtils {
     /*
 	 *dp转换为px
 	 *

@@ -8,7 +8,7 @@ import android.widget.Toast;
  * Created by k on 2016/11/24.
  */
 
-public class MShow {
+public class ShowUtils {
     static String str=null;
     private static Toast toast;
     public static void show(Context context, String str){

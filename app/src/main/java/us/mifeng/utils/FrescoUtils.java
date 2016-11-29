@@ -44,7 +44,7 @@ import java.util.UUID;
  * Created by k on 2016/11/24.
  */
 
-public class MFresco{
+public class FrescoUtils {
     private static final String PHOTO_FRESCO = "frescocache";
 
     private Bitmap fastBlur(Bitmap bkg, int radius, int downSampling) {
