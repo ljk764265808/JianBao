@@ -2,11 +2,8 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-<<<<<<< HEAD
     buildToolsVersion "24.0.1"
-=======
-    buildToolsVersion "24.0.2"
->>>>>>> master
+
     defaultConfig {
         applicationId "com.example.k.jianbao"
         minSdkVersion 16
@@ -33,4 +30,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.2'
+    compile 'com.jakewharton:butterknife:5.1.1'
 }
