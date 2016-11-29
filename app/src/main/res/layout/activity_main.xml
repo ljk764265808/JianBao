@@ -15,10 +15,10 @@
     <RadioGroup
         android:id="@+id/rg"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="48dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="#000">
+        android:background="#FFF">
 
         <RadioButton
             android:id="@+id/rb_goods"
@@ -28,11 +28,11 @@
             android:layout_marginLeft="0dp"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@mipmap/shangpin"
             android:gravity="center"
             android:text="商品展示"
-            android:textSize="16sp"
-            android:textColor="#fff" />
+            android:textSize="12sp"
+            android:textColor="#000" />
         <RadioButton
             android:id="@+id/rb_release"
             android:layout_width="wrap_content"
@@ -40,11 +40,11 @@
             android:layout_marginLeft="0dp"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@mipmap/jiahao"
             android:gravity="center"
             android:text="发布"
-            android:textSize="16sp"
-            android:textColor="#fff" />
+            android:textSize="12sp"
+            android:textColor="#000" />
         <RadioButton
             android:id="@+id/rb_mine"
             android:layout_width="wrap_content"
@@ -52,11 +52,11 @@
             android:layout_marginLeft="0dp"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@mipmap/gerenzhongxin"
             android:gravity="center"
             android:text="个人中心"
-            android:textSize="16sp"
-            android:textColor="#fff" />
+            android:textSize="12sp"
+            android:textColor="#000" />
 
     </RadioGroup>
 </LinearLayout>
