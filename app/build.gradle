@@ -2,7 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
+<<<<<<< HEAD
     buildToolsVersion "24.0.1"
+=======
+    buildToolsVersion "24.0.2"
+>>>>>>> master
     defaultConfig {
         applicationId "com.example.k.jianbao"
         minSdkVersion 16
