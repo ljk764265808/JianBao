@@ -7,7 +7,7 @@
     <string name="female">女</string>
     <string name="password">密码</string>
     <string name="inpassword">请输入你的密码</string>
-    <string name="info">请输入手机号/QQ/微信</string>
+    <string name="info">请输入手机号码</string>
     <string name="photo">请上传手持身份证照片</string>
     <string name="code">邀请码</string>
     <string name="incode">请输入邀请码</string>

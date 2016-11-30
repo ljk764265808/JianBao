@@ -32,7 +32,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/ed_border"
             android:gravity="center"
-            android:hint="@string/inname" />
+            android:hint="@string/info" />
 
         <EditText
             android:id="@+id/ed_password"
@@ -42,7 +42,7 @@
             android:background="@drawable/ed_border"
             android:gravity="center"
             android:hint="@string/inpassword"
-            android:inputType="textPassword" />
+             /><!--android:inputType="textPassword"-->
     </LinearLayout>
 
     <LinearLayout
