@@ -53,7 +53,7 @@ public class FrescoUtils {
 
         Bitmap smallBitmap =   Bitmap.createScaledBitmap(bkg,bkg.getWidth()/downSampling,bkg.getHeight()/downSampling,true);
 
-        return NativeStackBlur.process(smallBitmap, radius);
+        return   NativeStackBlur.process(smallBitmap, radius);
     }
 
     public static void loadUrl(String url, SimpleDraweeView draweeView, BasePostprocessor processor, int width, int height,
@@ -160,7 +160,6 @@ public class FrescoUtils {
                     }
                 })
                 .build();
-        MyImageCacheStatsTracker imageCacheStatsTracker = new MyImageCacheStatsTracker();
         ImagePipelineConfig config = ImagePipelineConfig.newBuilder(context)
                 .setMainDiskCacheConfig(diskCacheConfig)
                 .setImageCacheStatsTracker(imageCacheStatsTracker)
