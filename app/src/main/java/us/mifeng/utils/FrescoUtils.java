@@ -7,6 +7,7 @@ import android.graphics.PointF;
 import android.media.FaceDetector;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.webkit.DownloadListener;
 import android.webkit.URLUtil;
 
 import com.commit451.nativestackblur.NativeStackBlur;
@@ -160,6 +161,7 @@ public class FrescoUtils {
                     }
                 })
                 .build();
+        MyImageCacheStatsTracker imageCacheStatsTracker = new MyImageCacheStatsTracker();
         ImagePipelineConfig config = ImagePipelineConfig.newBuilder(context)
                 .setMainDiskCacheConfig(diskCacheConfig)
                 .setImageCacheStatsTracker(imageCacheStatsTracker)

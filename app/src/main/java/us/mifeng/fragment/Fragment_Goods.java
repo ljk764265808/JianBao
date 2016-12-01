@@ -80,11 +80,12 @@ public class Fragment_Goods extends Fragment implements PullToRefreshScrollView.
 
     @Override
     public void onClick(View view) {
-        String sp=mEdit_SP.getText().toString();
-        if(sp.equals("")){
-            Toast.makeText(getActivity(),"输入您要搜索的商品",Toast.LENGTH_SHORT).show();
-        }else{
+        String sp = mEdit_SP.getText().toString();
+        if (sp.equals("")) {
+            Toast.makeText(getActivity(), "请输入您要搜索的商品", Toast.LENGTH_SHORT).show();
+        } else {
             thread();
+
         }
 
     }
@@ -109,10 +110,12 @@ public class Fragment_Goods extends Fragment implements PullToRefreshScrollView.
                 Toast.makeText(getActivity(), "联网失败，稍后刷新！", Toast.LENGTH_SHORT).show();
             }
             if (msg.what == 2) {
-                String sp=mEdit_SP.getText().toString().trim();
+                String sp = mEdit_SP.getText().toString().trim();
                 Intent intent = new Intent(getActivity(), SeekActivity.class);
                 intent.putExtra("ShangPin", sp);
-                startActivity(intent);
+               startActivity(intent);
+
+                //overridePendingTransition(R.anim.in_frombottom, R.anim.out_from);
             }
         }
     };
@@ -125,6 +128,7 @@ public class Fragment_Goods extends Fragment implements PullToRefreshScrollView.
                 try {
                     Thread.sleep(1500);
                 } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 hand.sendEmptyMessage(0);
@@ -140,6 +144,7 @@ public class Fragment_Goods extends Fragment implements PullToRefreshScrollView.
                 try {
                     Thread.sleep(1500);
                 } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 hand.sendEmptyMessage(1);

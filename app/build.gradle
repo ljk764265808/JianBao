@@ -2,12 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
-
+    buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.example.k.jianbao"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -33,6 +32,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:5.1.1'
     compile 'com.commit451:NativeStackBlur:1.0.2'
     compile 'com.orhanobut:Logger:1.1'
-
-
+    compile 'jp.wasabeef:fresco-processors:2.0.0'
+    compile files('libs/glide-3.7.0.jar')
 }
