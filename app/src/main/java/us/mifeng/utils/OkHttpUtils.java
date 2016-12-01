@@ -22,7 +22,7 @@ import okhttp3.Response;
  * Created by k on 2016/11/24.
  */
 
-public class MOkHttp  {
+public class OkHttpUtils {
     public interface GetEntityCallBack{
         void getEntity(Object obj);
     }
@@ -55,10 +55,6 @@ public class MOkHttp  {
         Call call = client.newCall(request);
 
         call.enqueue(new Callback() {
-
-
-
-
             @Override
             public void onFailure(Call call, IOException e) {
                 Toast.makeText(context, "I am so sorry", Toast.LENGTH_SHORT).show();

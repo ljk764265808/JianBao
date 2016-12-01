@@ -7,7 +7,6 @@ import android.graphics.PointF;
 import android.media.FaceDetector;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.webkit.DownloadListener;
 import android.webkit.URLUtil;
 
 import com.commit451.nativestackblur.NativeStackBlur;
@@ -54,7 +53,7 @@ public class FrescoUtils {
 
         Bitmap smallBitmap =   Bitmap.createScaledBitmap(bkg,bkg.getWidth()/downSampling,bkg.getHeight()/downSampling,true);
 
-        return   NativeStackBlur.process(smallBitmap, radius);
+        return NativeStackBlur.process(smallBitmap, radius);
     }
 
     public static void loadUrl(String url, SimpleDraweeView draweeView, BasePostprocessor processor, int width, int height,
