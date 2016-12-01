@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,7 +30,7 @@ import us.mifeng.view.AdversView_datials;
  */
 
 public class DetailsActivity extends Activity implements View.OnClickListener {
-    private Button mBtn_back_details;
+    private LinearLayout mBtn_back_details;
     private ImageView mImg_guanzhu;
     private LinearLayout mLine_qq,mLine_wechat;
     private TextView mTv_qq,mTv_wechat,mTv_mobile;
@@ -52,7 +51,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
         }
 
     private void initView() {
-        mBtn_back_details= (Button) findViewById(R.id.mBtn_back_detalis);
+        mBtn_back_details= (LinearLayout) findViewById(R.id.mBtn_back_details);
         mImg_guanzhu= (ImageView) findViewById(R.id.mImg_guanzhu);
         mTv_guanzhu= (TextView) findViewById(R.id.mTv_guanzhu);
         mLine_guanzhu= (LinearLayout) findViewById(R.id.mLine_guanzhu);
@@ -72,7 +71,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         int ID=view.getId();
         switch (ID){
-            case R.id.mBtn_back_detalis:
+            case R.id.mBtn_back_details:
                 this.finish();
                 break;
             case R.id.mLine_guanzhu:

@@ -6,23 +6,28 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:background="#f29203">
 
-        <Button
-            android:id="@+id/mBtn_back_detalis"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:background="@mipmap/mm_title_back" />
+        <LinearLayout
+            android:id="@+id/mBtn_back_details"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/mm_title_back" />
+        </LinearLayout>
         <TextView
             android:id="@+id/mTv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="手机"
-            android:textSize="23sp" />
+            android:textSize="20sp" />
     </RelativeLayout>
 
     <ScrollView
@@ -120,6 +125,11 @@
                     android:layout_height="1dp"
                     android:background="#bab8b8" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#bab8b8" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
@@ -139,11 +149,6 @@
                         android:layout_marginLeft="5dp"
                         android:text="缓存其实和电脑上缓存的概念是一样的 缓存充当一个缓冲的作用,因为内存与CPU的速度是不一致的,内存比CPU慢上好多倍,在处理数据时,没有缓存,将会大大浪费CPU的资源,而缓存的速度接近于CPU,在处理数据的时候,系统将内存里的信息先存在缓存上,然后CPU从缓存内读取数据的速度就会很快,大大的提升了系统的性能 但时间长, 缓存是就会储存许多过去的信息而占用大量空间,所以需要清理。" />
                 </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#bab8b8" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

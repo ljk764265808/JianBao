@@ -1,11 +1,14 @@
 package us.mifeng.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.InputType;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +29,8 @@ import us.mifeng.view.PullToRefreshScrollView;
 public class SeekActivity extends Activity implements View.OnClickListener, PullToRefreshScrollView.Pull_To_Load, AdapterView.OnItemClickListener {
     private EditText mEdit_SP_seek;
     private Button mBtn_seek_seek;
-    private Button mBtn_back_seek;
+    private LinearLayout mBtn_back_seek;
+    private LinearLayout mLine_sp;
     private PullToRefreshScrollView mSc_seek;
     private View centerView;
     private MeasuredListView mLv_seek;
@@ -43,16 +47,19 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
     }
 
     private void intList() {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 5; i++) {
             list.add("");
         }
     }
 
     private void initView() {
-        mBtn_back_seek= (Button) findViewById(R.id.mBtn_back_seek);
+        mBtn_back_seek= (LinearLayout) findViewById(R.id.mBtn_back_seek);
         mEdit_SP_seek = (EditText) findViewById(R.id.mEdit_SP_seek);
         mBtn_seek_seek = (Button) findViewById(R.id.mBtn_seek_seek);
+        mLine_sp= (LinearLayout) findViewById(R.id.mLine_sp);
+
         mSc_seek = (PullToRefreshScrollView) findViewById(R.id.mSC_seek);
+       mEdit_SP_seek.setInputType(InputType.TYPE_NULL);
         mSc_seek.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         centerView = View.inflate(this, R.layout.view_seek, null);
         mSc_seek.setCenterView(centerView);
@@ -67,7 +74,9 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
 
         mBtn_back_seek.setOnClickListener(this);
         mBtn_seek_seek.setOnClickListener(this);
+        mLine_sp.setOnClickListener(this);
         mLv_seek.setOnItemClickListener(this);
+        mEdit_SP_seek.setOnClickListener(this);
     }
 
     @Override
@@ -76,6 +85,20 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
         switch (ID){
             case R.id.mBtn_back_seek:
                 this.finish();
+                break;
+            case R.id.mLine_sp:
+                mEdit_SP_seek.setInputType(InputType.TYPE_CLASS_TEXT);
+                mEdit_SP_seek.setFocusableInTouchMode(true);
+                InputMethodManager inputMethodManager = (InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.showSoftInput(mEdit_SP_seek,0);
+                mEdit_SP_seek.setSelection(mEdit_SP_seek.getText().toString().trim().length());
+                break;
+             case R.id.mEdit_SP_seek:
+                mEdit_SP_seek.setInputType(InputType.TYPE_CLASS_TEXT);
+                mEdit_SP_seek.setFocusableInTouchMode(true);
+                InputMethodManager inputMethodManager2 = (InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager2.showSoftInput(mEdit_SP_seek,0);
+                mEdit_SP_seek.setSelection(mEdit_SP_seek.getText().toString().trim().length());
                 break;
             case R.id.mBtn_seek_seek:
 
@@ -134,7 +157,7 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
 
     private void loadMore() {
         int count = adapter.getCount();
-        for (int i = count; i < count + 30; i++) {
+        for (int i = count; i < count + 5; i++) {
             list.add("");
         }
     }
@@ -144,5 +167,6 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent=new Intent(this,DetailsActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.in_frombottom, R.anim.out_from);
     }
 }
