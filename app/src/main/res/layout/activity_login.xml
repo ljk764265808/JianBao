@@ -42,7 +42,7 @@
             android:background="@drawable/ed_border"
             android:gravity="center"
             android:hint="@string/inpassword"
-             /><!--android:inputType="textPassword"-->
+            android:inputType="textPassword" />
     </LinearLayout>
 
     <LinearLayout

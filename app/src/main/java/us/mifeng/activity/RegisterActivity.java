@@ -3,84 +3,93 @@ package us.mifeng.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import java.util.HashMap;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import us.mifeng.utils.MCamera;
-
+import us.mifeng.utils.ShowUtils;
 
 /**
  * Created by admin on 2016/11/23.
  */
 
 public class RegisterActivity extends Activity {
-
-    private static final int TAKE_PICTURE = 0;
-    private static final int CHOOSE_PICTURE = 1;
-    private static final int SCALE = 5;//照片缩小比例
-    @InjectView(R.id.iv_photo)
-    ImageView ivPhoto;
+    public static final String TAG = "RegisterActivity";
     @InjectView(R.id.ed_name)
     EditText edName;
     @InjectView(R.id.ed_password)
     EditText edPassword;
-    @InjectView(R.id.ed_phone)
-    EditText edPhone;
+    @InjectView(R.id.ed_email)
+    EditText edEmail;
     @InjectView(R.id.ed_code)
     EditText edCode;
-    @InjectView(R.id.ibtn_camera)
-    ImageButton ibtnCamera;
-    @InjectView(R.id.btn_register)
-    Button btnRegister;
+    @InjectView(R.id.ed_weixin)
+    EditText edWeixin;
+    @InjectView(R.id.btn_next)
+    Button btnNext;
     @InjectView(R.id.rg_gender)
     RadioGroup rgGender;
+    @InjectView(R.id.ed_phone)
+    EditText edPhone;
+    private String gender;
+    private String username;
+    private String password;
+    private String phone;
+    private String code;
+
+    private HashMap<String, String> map = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_simple);
+        setContentView(R.layout.activity_register);
         ButterKnife.inject(this);
-        initView();
-
-    }
-
-    @OnClick({R.id.ibtn_camera, R.id.btn_register})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.ibtn_camera:
-                MCamera.showPicturePicker(this);
-                break;
-            case R.id.btn_register:
-                finish();
-                break;
-        }
-    }
-
-    private void initView() {
-        String strUsername = edName.getText().toString().trim();
-        String strPassword = edPassword.getText().toString().trim();
-        String strPhone = edPhone.getText().toString().trim();
-        String strCode = edCode.getText().toString().trim();
         //获取RadioButton选中的值
         rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int id) {
                 RadioButton rb = (RadioButton) findViewById(id);
-                String gender = rb.getText().toString().trim();
+                gender = rb.getText().toString().trim();
+                map.put("gender", gender);
             }
         });
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        MCamera.activityResult(requestCode,resultCode,data,ivPhoto,this);
+
+
+    private void initView() {
+
+        username = edName.getText().toString().trim();
+        password = edPassword.getText().toString().trim();
+        phone = edPhone.getText().toString().trim();
+        code = edCode.getText().toString().trim();
+
+        map.put("name", username);
+        map.put("password", password);
+        map.put("mobile", phone);
+        map.put("code", code);
+       /* ShareUtils.setData(Regis terActivity.this,"username",username);
+        ShareUtils.setData(RegisterActivity.this,"password",password);,
+        ShareUtils.setData(RegisterActivity.this,"phone",phone);
+        ShareUtils.setData(RegisterActivity.this,"code",code);
+        ShareUtils.setData(RegisterActivity.this,"gender",gender);*/
+    }
+
+
+    @OnClick(R.id.btn_next)
+    public void onClick() {
+        initView();
+        Intent intent = new Intent(RegisterActivity.this, Register_PhotoActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("map", map);
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+
     }
 }

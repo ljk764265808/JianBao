@@ -3,6 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
     defaultConfig {
         applicationId "com.example.k.jianbao"
         minSdkVersion 16
@@ -24,10 +26,14 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:22.0.1'
+    compile 'com.android.support:appcompat-v7:22.2.1'
     testCompile 'junit:junit:4.12'
     compile 'com.jakewharton:butterknife:5.1.1'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.facebook.fresco:fresco:0.12.0'
     compile 'com.squareup.okhttp3:okhttp:3.4.2'
+    compile 'com.facebook.fresco:fresco:0.12.0'
+    compile 'com.commit451:NativeStackBlur:1.0.2'
+    compile 'jp.wasabeef:fresco-processors:2.0.0'
+    compile 'com.orhanobut:Logger:1.1'
 }

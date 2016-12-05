@@ -1,6 +1,7 @@
 package us.mifeng.utils;
 
 import android.content.Context;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -34,7 +35,7 @@ public class MOkHttp {
     }
 
     public static Object o;
-    private static final String TAG = "OkHttpUtils";
+    private static final String TAG = "MOkHttp";
 
     public static Object post(final Context context, String path, Map<String, String> map, final Type type) {
         OkHttpClient client = new OkHttpClient();
@@ -46,7 +47,6 @@ public class MOkHttp {
             builder.add(entry.getKey(), entry.getValue());
         }
         FormBody body = builder.build();
-
         final Request request = new Request.Builder()
                 .url(path)
                 .post(body)
@@ -97,13 +97,17 @@ public class MOkHttp {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                //Toast.makeText(context, "I am so sorry", Toast.LENGTH_SHORT).show();
+                Looper.prepare();
+                Toast.makeText(context, "I am so sorry", Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "onFailure: ",e );
+                Looper.loop();
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (response.isSuccessful()) {
                     String json = response.body().string();
+
                     Log.i(TAG, "onResponse: " + json);
                     Gson gson = new Gson();
                     o = gson.fromJson(json, cla);
