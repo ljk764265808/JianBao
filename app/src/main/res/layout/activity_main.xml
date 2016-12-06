@@ -1,42 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#8b4513">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_weight="1">
-    </android.support.v4.view.ViewPager>
+        android:layout_weight="1"/>
 
     <RadioGroup
         android:id="@+id/rg"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="58dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="#FFF">
+        android:background="#000">
 
         <RadioButton
             android:id="@+id/rb_goods"
             android:paddingLeft="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_marginLeft="0dp"
             android:layout_weight="1"
             android:button="@null"
             android:drawableTop="@mipmap/shangpin"
             android:gravity="center"
-            android:text="商品展示"
+            android:text="商品列表"
             android:textSize="12sp"
-            android:textColor="#000" />
+            android:textColor="#fff" />
         <RadioButton
             android:id="@+id/rb_release"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_marginLeft="0dp"
             android:layout_weight="1"
             android:button="@null"
@@ -44,11 +44,12 @@
             android:gravity="center"
             android:text="发布"
             android:textSize="12sp"
-            android:textColor="#000" />
+            android:textColor="#fff" />
         <RadioButton
             android:id="@+id/rb_mine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_marginLeft="0dp"
             android:layout_weight="1"
             android:button="@null"
@@ -56,7 +57,8 @@
             android:gravity="center"
             android:text="个人中心"
             android:textSize="12sp"
-            android:textColor="#000" />
+            android:textColor="#fff" />
 
     </RadioGroup>
+
 </LinearLayout>
