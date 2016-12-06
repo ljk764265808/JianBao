@@ -44,7 +44,6 @@
                 android:id="@+id/mAdver_details"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:background="@mipmap/tupian4"
                 android:orientation="vertical">
 
             </LinearLayout>

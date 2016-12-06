@@ -55,7 +55,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
     private LinearLayout mLinear;
     private List<String> list_url = new ArrayList<>();
 
-    private String urlStr="http://192.168.4.188/Goods/app/item_list/detail.json";
+    private String urlStr="http://192.168.4.188/Goods/app/item/detail.json";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +68,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
 
     private void initMap() {
         map.put("id",id);
-        map.put("token","3E738515C6BD4D1CA0AB32C01AC8C713");
+        map.put("token","A9A2206540AA4B9D918B1162304C4D49");
 
     }
 
@@ -185,6 +185,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
                 if (list.size()==0){
                     ImageView image=new ImageView(DetailsActivity.this);
                     image.setImageResource(R.mipmap.detail);
+                    image.setScaleType(ImageView.ScaleType.FIT_XY);
                     mLinear.addView(image);
                 }else{
                     Log.e("","list"+list.size());

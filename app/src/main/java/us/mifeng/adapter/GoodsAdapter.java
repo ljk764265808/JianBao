@@ -47,7 +47,7 @@ public class GoodsAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = View.inflate(ctx, R.layout.item_list, null);
+            convertView = View.inflate(ctx, R.layout.item, null);
             holder.mItem_img = (ImageView) convertView.findViewById(R.id.mItem_img);
             holder.mItem_title = (TextView) convertView.findViewById(R.id.mItem_title);
             holder.mItem_price = (TextView) convertView.findViewById(R.id.mItem_price);

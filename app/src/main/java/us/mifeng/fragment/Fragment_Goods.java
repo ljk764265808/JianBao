@@ -63,7 +63,7 @@ public class Fragment_Goods extends Fragment implements PullToRefreshScrollView.
     private int max;
     private View v;
     private LinearLayout ll_search;
-    private String listStr="http://192.168.4.188/Goods/app/item_list/list.json";
+    private String listStr="http://192.168.4.188/Goods/app/item/list.json";
 
     @Nullable
     @Override
@@ -80,7 +80,7 @@ public class Fragment_Goods extends Fragment implements PullToRefreshScrollView.
 
     private void initMap() {
 
-        map.put("curPage","1");
+        map.put("curPage","2");
     }
 
 
