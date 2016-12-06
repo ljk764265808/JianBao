@@ -10,7 +10,7 @@ import android.widget.RadioGroup;
 
 import java.util.ArrayList;
 
-import us.mifeng.adapter.FrameWork_Adapter;
+import us.mifeng.adapter.Framework_Adapter;
 import us.mifeng.fragment.Fragment_Goods;
 import us.mifeng.fragment.Fragment_Mine;
 import us.mifeng.fragment.Fragment_Release;
@@ -64,7 +64,7 @@ public class MainActivity extends FragmentActivity {
         list.add(new Fragment_Goods());
         list.add(new Fragment_Release());
         list.add(new Fragment_Mine());
-        FrameWork_Adapter mAdapter = new FrameWork_Adapter(getSupportFragmentManager());
+        Framework_Adapter mAdapter = new Framework_Adapter(getSupportFragmentManager());
         mAdapter.setList(list);
         vp.setAdapter(mAdapter);
     }
