@@ -15,7 +15,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import us.mifeng.activity.R;
-import us.mifeng.utils.MQieYuan;
 
 /**
  * Created by k on 2016/11/24.
@@ -32,7 +31,7 @@ public class Fragment_Mine extends Fragment {
         View v = inflater.inflate(R.layout.mine_layout, null);
         ButterKnife.inject(this, v);
         Bitmap bit = BitmapFactory.decodeResource(getResources(), R.mipmap.yonghu);
-        image.setImageBitmap(MQieYuan.getYuan(bit));
+        //image.setImageBitmap(MQieYuan.getYuan(bit));
         return v;
     }
 
