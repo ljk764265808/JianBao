@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -10,9 +11,10 @@
         android:background="#cf6171">
 
         <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="330dp"
+            android:id="@+id/Image_shezhi"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_marginLeft="320dp"
             android:layout_marginTop="10dp"
             android:src="@mipmap/shezhi" />
 
@@ -32,13 +34,20 @@
                 android:textColor="#fdfbfb"
                 android:textSize="20dp" />
 
+
+            <!--<com.facebook.drawee.view.SimpleDraweeView-->
+                <!--android:id="@+id/drawee_img"-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--fresco:placeholderImage="@mipmap/ic_launcher"-->
+                <!--fresco:roundAsCircle="true"/>-->
             <ImageView
-                android:id="@+id/image"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:src="@mipmap/yonghu" />
+                android:id="@+id/drawee_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="15dp"
+                android:src="@mipmap/yonghu"
+                />
         </LinearLayout>
     </RelativeLayout>
 
@@ -49,6 +58,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/myfabu"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -83,6 +93,7 @@
         android:background="#e7e7e1">
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/myguanzhu"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -97,7 +108,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="我的收藏"
+            android:text="我的关注"
             android:textColor="#000"
             android:gravity="center_vertical"
             android:layout_marginLeft="20dp"
@@ -117,6 +128,7 @@
         android:background="#e7e7e1">
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/myyaoqingma"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -150,6 +162,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/mybangzhu"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -178,25 +191,60 @@
             />
     </LinearLayout>
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+    <!--<View-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1">-->
 
-    </View>
-    <RelativeLayout
+    <!--</View>-->
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:gravity="center"-->
+        <!--android:background="#f00"-->
+        <!--android:layout_gravity="bottom">-->
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:textSize="25dp"-->
+            <!--android:textColor="#000"-->
+            <!--android:text="退出登录"/>-->
+    <!--</RelativeLayout>-->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:background="#f00"
-        android:layout_gravity="bottom">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="25dp"
-            android:textColor="#000"
-            android:text="退出登录"/>
-    </RelativeLayout>
+        android:layout_marginLeft="50dp"
+        android:layout_height="1dp"
+        android:background="#e7e7e1">
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/mylianxikefu"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/kefu"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="联系客服"
+            android:textColor="#000"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="18dp" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="187dp"
+            android:src="@mipmap/youjiantou"
+            />
+    </LinearLayout>
 </LinearLayout>
