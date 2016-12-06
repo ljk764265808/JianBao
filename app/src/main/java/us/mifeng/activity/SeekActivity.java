@@ -84,7 +84,6 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
         mEdit_SP_seek = (EditText) findViewById(R.id.mEdit_SP_seek);
         mBtn_seek_seek = (Button) findViewById(R.id.mBtn_seek_seek);
         mLine_sp = (LinearLayout) findViewById(R.id.mLine_sp);
-
         mSc_seek = (PullToRefreshScrollView) findViewById(R.id.mSC_seek);
         mEdit_SP_seek.setInputType(InputType.TYPE_NULL);
         mSc_seek.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
@@ -92,10 +91,8 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
         mSc_seek.setCenterView(centerView);
         mLv_seek = (MeasuredListView) centerView.findViewById(R.id.mLv_seek);
         mSc_seek.setCall(this);
-
         String SP = getIntent().getStringExtra("SPstr");
         mEdit_SP_seek.setText(SP);
-
         mBtn_back_seek.setOnClickListener(this);
         mBtn_seek_seek.setOnClickListener(this);
         mLine_sp.setOnClickListener(this);
