@@ -9,8 +9,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.ScrollView;
 
 import us.mifeng.activity.R;
@@ -129,7 +127,11 @@ public class PullToRefreshScrollView extends ScrollView {
                 }
             }
         } else if (ev.getAction() == MotionEvent.ACTION_UP) {
+
             select();
+            if (mode == REFRESHING || mode == RELASE_LOAD || mode == RELASE_REFRESH) {
+                return true;
+            }
         }
         return super.dispatchTouchEvent(ev);
     }
@@ -173,22 +175,5 @@ public class PullToRefreshScrollView extends ScrollView {
 
     public void setCall(Pull_To_Load call) {
         this.call = call;
-    }
-
-    //测量listView高度的方法
-    public void MesureListHeight(ListView lv) {
-        //1.获取到listView的适配器
-        ListAdapter adapter = lv.getAdapter();
-        int height = 0;//当前listView的高度
-        for (int i = 0; i < adapter.getCount(); i++) {
-            View view = adapter.getView(i, null, null);
-            view.measure(0, 0);
-            height = height + view.getMeasuredHeight();
-        }
-        height = height + lv.getDividerHeight() * (adapter.getCount() - 1) +
-                lv.getPaddingBottom() + lv.getPaddingTop();
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height);
-        lv.setLayoutParams(lp);
-        PullToRefreshScrollView.this.invalidate();//刷新高度
     }
 }

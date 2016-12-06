@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#f29203">
+
+        <LinearLayout
+            android:id="@+id/mBtn_back_details"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/mm_title_back" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/mTv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="手机"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/mAdver_details"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/mTv_issue_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="2016-9-9" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/mTv_issue_time"
+                        android:text="发布时间：" />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/mTv_title_details"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="苹果5s iPhone5s"
+                            android:textSize="23sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="￥"
+                                android:textColor="#ff4d00"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/mTv_price_details"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="800.00"
+                                android:textColor="#ff4d00"
+                                android:textSize="22sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="关注数量"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/mTv_follow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mLine_guanzhu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/mImg_guanzhu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/aixin_normal" />
+
+                        <TextView
+                            android:id="@+id/mTv_guanzhu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="关注" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#bab8b8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="是否本人所属：" />
+
+                        <TextView
+                            android:id="@+id/mTv_owner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#199ddf"
+                            android:text="是" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="状态：" />
+
+                        <TextView
+                            android:id="@+id/mTv_state"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#199ddf"
+                            android:text="正常" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#bab8b8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="商品描述："
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/mTv_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="缓存其实和电脑上缓存的概念是一样的 缓存充当一个缓冲的作用,因为内存与CPU的速度是不一致的,内存比CPU慢上好多倍,在处理数据时,没有缓存,将会大大浪费CPU的资源,而缓存的速度接近于CPU,在处理数据的时候,系统将内存里的信息先存在缓存上,然后CPU从缓存内读取数据的速度就会很快,大大的提升了系统的性能 但时间长, 缓存是就会储存许多过去的信息而占用大量空间,所以需要清理。" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#bab8b8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="联系人："
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/mTv_contact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="杜先生"
+                            android:textColor="#3c08f7"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#fbd2cdcd" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="手机号："
+                                android:textColor="#02ab02" />
+
+                            <TextView
+                                android:id="@+id/mTv_mobile"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="18518664217"
+                                android:textColor="#008cff" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/mLine_wechat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="微信号："
+                                android:textColor="#02ab02" />
+
+                            <TextView
+                                android:id="@+id/mTv_wechat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="138383845"
+                                android:textColor="#008cff" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/mLine_qq"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="QQ号："
+                                android:textColor="#02ab02" />
+
+                            <TextView
+                                android:id="@+id/mTv_qq"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="138383845"
+                                android:textColor="#008cff" />
+
+                        </LinearLayout>
+<LinearLayout
+                            android:id="@+id/mLine_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Email："
+                                android:textColor="#02ab02" />
+
+                            <TextView
+                                android:id="@+id/mTv_email"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="138383845"
+                                android:textColor="#008cff" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

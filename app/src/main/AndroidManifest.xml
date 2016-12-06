@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="us.mifeng.activity">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -31,6 +30,9 @@
         <activity android:name="us.mifeng.activity.ImageFile"></activity>
         <activity android:name="us.mifeng.activity.ShowAllPhoto"></activity>
 
+        <activity android:name=".SeekActivity"></activity>
+        <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>
