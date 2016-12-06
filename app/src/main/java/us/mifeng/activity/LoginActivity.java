@@ -42,6 +42,8 @@ public class LoginActivity extends Activity {
     Button btnLogin;
     @InjectView(R.id.tv_noid)
     TextView tvNoid;
+    @InjectView(R.id.tv_look)
+    TextView tvLook;
     private String username;
     private String password;
     private String status;
@@ -112,14 +114,14 @@ public class LoginActivity extends Activity {
                 if (login != null) {
                     status = login.getStatus();
                      /*通过用户输入的用户名密码获取token值* */
-                    Login.DataBean dataBean = login.getData();
+                    juegeStatus();
                     String token = login.getToken();
                     Log.e("TAG", "getEntity: token值：" + token);
                     //存放token值
-                    ShareUtils.setData(LoginActivity.this,"token",token);
-                    //getSharedPreferences("test", MODE_PRIVATE).edit().putString("token", token).commit();
+                    if (token != null) {
+                        ShareUtils.setData(LoginActivity.this, "token", token);
+                    }
                 }
-                juegeStatus();
             }
         });
     }
@@ -162,7 +164,7 @@ public class LoginActivity extends Activity {
     }
 
 
-    @OnClick({R.id.btn_login, R.id.tv_noid})
+    @OnClick({R.id.btn_login, R.id.tv_noid,R.id.tv_look})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
@@ -171,6 +173,9 @@ public class LoginActivity extends Activity {
                 break;
             case R.id.tv_noid:
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                break;
+            case R.id.tv_look:
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
         }
     }
