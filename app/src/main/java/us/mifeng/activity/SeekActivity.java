@@ -10,8 +10,8 @@ import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -20,8 +20,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,9 +44,7 @@ import static java.lang.String.valueOf;
 
 public class SeekActivity extends Activity implements View.OnClickListener, PullToRefreshScrollView.Pull_To_Load, AdapterView.OnItemClickListener {
     private EditText mEdit_SP_seek;
-    private Button mBtn_seek_seek;
-    private LinearLayout mBtn_back_seek;
-    private LinearLayout mLine_sp;
+    private ImageView mBack_seek;
     private PullToRefreshScrollView mSc_seek;
     private View centerView;
     private MeasuredListView mLv_seek;
@@ -63,6 +59,7 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seek);
+        adapter = new GoodsAdapter(SeekActivity.this, list_first);
         initView();
         initMap();
         post_file(listStr, map);
@@ -70,20 +67,13 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
 
     private void initMap() {
         String SPstr = getIntent().getStringExtra("SPstr");
-        try {
-            String str = URLEncoder.encode(SPstr, "utf-8");
-            map.put("title", str);
+            map.put("title", SPstr);
             map.put("curPage", "1");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
     }
 
     private void initView() {
-        mBtn_back_seek = (LinearLayout) findViewById(R.id.mBtn_back_seek);
+        mBack_seek= (ImageView) findViewById(R.id.mBack_seek);
         mEdit_SP_seek = (EditText) findViewById(R.id.mEdit_SP_seek);
-        mBtn_seek_seek = (Button) findViewById(R.id.mBtn_seek_seek);
-        mLine_sp = (LinearLayout) findViewById(R.id.mLine_sp);
 
         mSc_seek = (PullToRefreshScrollView) findViewById(R.id.mSC_seek);
         mEdit_SP_seek.setInputType(InputType.TYPE_NULL);
@@ -96,9 +86,7 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
         String SP = getIntent().getStringExtra("SPstr");
         mEdit_SP_seek.setText(SP);
 
-        mBtn_back_seek.setOnClickListener(this);
-        mBtn_seek_seek.setOnClickListener(this);
-        mLine_sp.setOnClickListener(this);
+        mBack_seek.setOnClickListener(this);
         mLv_seek.setOnItemClickListener(this);
         mEdit_SP_seek.setOnClickListener(this);
     }
@@ -107,7 +95,7 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
     public void onClick(View view) {
         int ID = view.getId();
         switch (ID) {
-            case R.id.mBtn_back_seek:
+            case R.id.mBack_seek:
                 this.finish();
                 break;
             case R.id.mEdit_SP_seek:
@@ -149,7 +137,7 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
                 if (adapter != null) {
                     adapter.RefrashAdapter(list_first);
                 } else {
-                    adapter = new GoodsAdapter(SeekActivity.this, list_first);
+                    //adapter = new GoodsAdapter(SeekActivity.this, list_first);
                     mLv_seek.setAdapter(adapter);
                 }
             }
@@ -269,7 +257,9 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(this, DetailsActivity.class);
+        Intent intent = new Intent(SeekActivity.this, DetailsActivity.class);
+        GoodsBeen been = (GoodsBeen) adapterView.getAdapter().getItem(i);
+        intent.putExtra("id", been.getId());
         startActivity(intent);
         overridePendingTransition(R.anim.in_frombottom, R.anim.out_from);
     }

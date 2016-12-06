@@ -9,22 +9,17 @@
         android:layout_height="50dp"
         android:background="#fa5204">
 
-        <LinearLayout
-            android:id="@+id/mBtn_back_seek"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
 
-            <Button
+            <ImageView
+                android:id="@+id/mBack_seek"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
                 android:background="@mipmap/mm_title_back" />
-        </LinearLayout>
 
 
         <LinearLayout
-            android:id="@+id/mLine_sp"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_centerInParent="true"
@@ -42,15 +37,6 @@
                 android:hint="搜索商品"
                 android:textColorHint="#cccccc" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/mBtn_seek_seek"
-            android:layout_width="40dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:background="@mipmap/shared_searchbuttom_normal" />
 
     </RelativeLayout>
 
