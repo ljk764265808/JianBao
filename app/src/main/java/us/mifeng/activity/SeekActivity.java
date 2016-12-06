@@ -27,7 +27,6 @@ import java.util.List;
 
 import us.mifeng.adapter.GoodsAdapter;
 import us.mifeng.been.GoodsBeen;
-import us.mifeng.utils.JsonUtils;
 import us.mifeng.view.MeasuredListView;
 import us.mifeng.view.PullToRefreshScrollView;
 
@@ -46,7 +45,6 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
     private List<GoodsBeen> list_goods;
     private List<GoodsBeen> list_first = new ArrayList<GoodsBeen>();
     private GoodsAdapter adapter;
-    private JsonUtils utils;
     private int max;
     private String listStr="http://192.168.4.188/Goods/app/item/list.json?token=E4B7D7027E4E4F4BB1EADC70EE963472&curPage=1";
 //    private String listhead="http://192.168.4.188/Goods/app/item/list.json?token=";
@@ -133,20 +131,20 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
                 Toast.makeText(SeekActivity.this, "联网失败，稍后刷新！", Toast.LENGTH_SHORT).show();
             }
             if(msg.what==2){
-                String goodsStr1= (String) msg.obj;
-                utils=new JsonUtils(SeekActivity.this,goodsStr1,2);
-                list_goods=utils.BuildList(goodsStr1);
-                for(int i=0;i<5;i++){
-                    GoodsBeen been=list_goods.get(i);
-                    list_first.add(been);
-                }
-                if(adapter!=null){
-                    adapter.RefrashAdapter(list_first);
-                }else{
-                    adapter=new GoodsAdapter(SeekActivity.this,list_first);
-                mLv_seek.setAdapter(adapter);
-
-            }
+//                String goodsStr1= (String) msg.obj;
+//                utils=new JsonUtils(SeekActivity.this,goodsStr1);
+//                list_goods=utils.BuildList(goodsStr1);
+//                for(int i=0;i<5;i++){
+//                    GoodsBeen been=list_goods.get(i);
+//                    list_first.add(been);
+//                }
+//                if(adapter!=null){
+//                    adapter.RefrashAdapter(list_first);
+//                }else{
+//                    adapter=new GoodsAdapter(SeekActivity.this,list_first);
+//                mLv_seek.setAdapter(adapter);
+//
+//            }
             }
         }
     };

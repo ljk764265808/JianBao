@@ -16,13 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,9 +28,7 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import us.mifeng.been.AdverBeen;
 import us.mifeng.been.DetailsBeen;
-import us.mifeng.utils.JsonUtils;
 import us.mifeng.view.AdversView_datials;
 
 import static java.lang.String.valueOf;
@@ -46,7 +38,6 @@ import static java.lang.String.valueOf;
  */
 
 public class DetailsActivity extends Activity implements View.OnClickListener {
-    private int index_vp=0;
     private int[] arr;
     private LinearLayout mBtn_back_details;
     private ImageView mImg_guanzhu;
@@ -54,7 +45,6 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
     private TextView mTv_qq,mTv_wechat,mTv_mobile,mTv_email,mTv_follow,mTv_issue_time;
     private TextView mTv_guanzhu,mTv_contact,mTv_description,mTv_title_details,mTv_price_details;
     private TextView mTv_state,mTv_owner,mTv_title;
-    private int[] photo;
     private Map<String,Object> map=new HashMap<String,Object>();
     private int id;
     private LinearLayout mLine_guanzhu;
@@ -62,11 +52,8 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
     private boolean GuanzhuFlag=true;
     private LinearLayout mLinear;
     private List<String> list_url = new ArrayList<>();
-    private List<AdverBeen> list;
-    private List<DetailsBeen> list_detail;
-    private DetailsBeen detaBeen=new DetailsBeen();
+
     private String urlStr="http://192.168.4.188/Goods/app/item/detail.json";
-    private JsonUtils utils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,12 +66,11 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
 
     private void initMap() {
         map.put("id",id);
-        map.put("token","FEB8083697FD41608336D5331EC21C98");
+        map.put("token","3E738515C6BD4D1CA0AB32C01AC8C713");
 
     }
 
     private void initView() {
-        getStr(urlStr);
         mBtn_back_details= (LinearLayout) findViewById(R.id.mBtn_back_details);
         mImg_guanzhu= (ImageView) findViewById(R.id.mImg_guanzhu);
         mTv_guanzhu= (TextView) findViewById(R.id.mTv_guanzhu);
@@ -150,7 +136,9 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if(msg.what==0){
+
                 DetailsBeen detaBeen= (DetailsBeen) msg.obj;
+
                 mTv_title.setText(detaBeen.getTitle());
                 mTv_title_details.setText(detaBeen.getTitle());
                 mTv_description.setText(detaBeen.getDescription());
@@ -226,7 +214,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
 
             @Override
             public void onResponse(Call arg0, Response arg1) throws IOException {
-                final String str=arg1.body().string();
+             final String str=arg1.body().string();
 
                 runOnUiThread(new Runnable() {
                     public void run() {
@@ -247,6 +235,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
                             String contact = data.getString("contact");
                             detail.setContact(contact);
                             int issue_time = data.getInt("issue_time");
+
                             detail.setIssue_time(issue_time);
                             int follow = data.getInt("follow");
                             detail.setFollow(follow);
@@ -297,37 +286,5 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
             }
         });
     }
-    /*
-	 * 开启子线程1 ---》获取json字符串串的方法
-	 * */
-    private void getStr(final String urlStr){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url=new URL(urlStr);
-                    HttpURLConnection conn=(HttpURLConnection) url.openConnection();
-                    InputStream is = conn.getInputStream();
-                    BufferedReader br=new BufferedReader(new InputStreamReader(is));
-                    StringBuffer sb=new StringBuffer();
-                    String tumb;
-                    while((tumb=br.readLine())!=null){
-                        sb.append(tumb);
-                    }
-                    br.close();
-                    is.close();
-                    String jsonStr=sb.toString();
-                    Message msg=hand.obtainMessage();
-                    msg.what=0;
-                    msg.obj=jsonStr;
-                    hand.sendMessage(msg);
 
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-    }
 }

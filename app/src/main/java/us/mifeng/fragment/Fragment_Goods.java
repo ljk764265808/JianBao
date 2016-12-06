@@ -18,28 +18,33 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import us.mifeng.activity.DetailsActivity;
 import us.mifeng.activity.R;
 import us.mifeng.activity.SearchActivity;
 import us.mifeng.activity.SeekActivity;
 import us.mifeng.adapter.GoodsAdapter;
 import us.mifeng.been.GoodsBeen;
-import us.mifeng.utils.JsonUtils;
 import us.mifeng.view.AdversView;
 import us.mifeng.view.MeasuredListView;
 import us.mifeng.view.PullToRefreshScrollView;
 
-import static android.R.attr.id;
+import static java.lang.String.valueOf;
 
 /**
  * Created by k on 2016/11/24.
@@ -53,29 +58,33 @@ public class Fragment_Goods extends Fragment implements PullToRefreshScrollView.
     private MeasuredListView mLv;//自定义的listView
     private List<GoodsBeen> list_goods;
     private List<GoodsBeen> list_first = new ArrayList<GoodsBeen>();
+    private Map<String,Object> map=new HashMap<String,Object>();
     private GoodsAdapter adapter;
-    private JsonUtils utils;
     private int max;
     private View v;
     private LinearLayout ll_search;
-    private String listStr="http://192.168.4.188/Goods/app/item/list.json?token=FEB8083697FD41608336D5331EC21C98&curPage=1";
-//    private String listhead="http://192.168.4.188/Goods/app/item/list.json?token=";
-//    private String token;
-//    private String  curPage;
+    private String listStr="http://192.168.4.188/Goods/app/item/list.json";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = View.inflate(getActivity(), R.layout.fragment_home, null);
         v.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         initView();
+        initMap();
+        post_file(listStr,map);
         return v;
     }
 
 
 
+    private void initMap() {
+
+        map.put("curPage","1");
+    }
+
 
     private void initView() {
-        getListStr(listStr);
         ll_search = (LinearLayout) v.findViewById(R.id.ll_search);
         mEdit_SP = (EditText) v.findViewById(R.id.mEdit_SP);
         mSc = (PullToRefreshScrollView) v.findViewById(R.id.mSC);
@@ -160,10 +169,8 @@ public class Fragment_Goods extends Fragment implements PullToRefreshScrollView.
                startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.in_frombottom, R.anim.out_from);
             }
-            if(msg.what==3){
-                String goodsStr1= (String) msg.obj;
-                utils=new JsonUtils(getActivity(),goodsStr1,2);
-                list_goods=utils.BuildList(goodsStr1);
+           if(msg.what==3){
+               list_goods= (List<GoodsBeen>) msg.obj;
                 for(int i=0;i<5;i++){
                     GoodsBeen been=list_goods.get(i);
                     list_first.add(been);
@@ -226,40 +233,66 @@ public class Fragment_Goods extends Fragment implements PullToRefreshScrollView.
             }
         }
     }
-    /*
-	 * 开启子线程2 ---》获取json字符串串的方法
-	 * */
-    private void getListStr(final String listStr){
-        new Thread(new Runnable() {
+    private void post_file(String listStr, Map<String, Object> map) {
+        OkHttpClient ok=new OkHttpClient();
+        // form 表单形式上传
+        MultipartBody.Builder requestBody=new MultipartBody.Builder();
+        requestBody.setType(MultipartBody.FORM);
+        if(map!=null){
+            // map 里面是请求中所需要的 key 和 value
+            for (Map.Entry entry : map.entrySet()) {
+                if (entry.getValue()!=null&&!"".equals(entry.getValue()))
+                {  requestBody.addFormDataPart(valueOf(entry.getKey()), valueOf(entry.getValue()));}
+            }
+        }
+        MultipartBody build = requestBody.build();
+        Request request = new Request.Builder()
+                .url(listStr)
+                .post(build)
+                .build();
+        Call call=ok.newCall(request);
+
+        call.enqueue(new Callback() {
+
             @Override
-            public void run() {
-//                token="E4B7D7027E4E4F4BB1EADC70EE963472";
-//                curPage="1";
-//                listStr=listhead+token+curPage;
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call arg0, Response arg1) throws IOException {
+                final String str=arg1.body().string();
+                List<GoodsBeen> list=new ArrayList<GoodsBeen>();
                 try {
-                    URL url=new URL(listStr);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    InputStream is = conn.getInputStream();
-                    BufferedReader br=new BufferedReader(new InputStreamReader(is));
-                    StringBuffer sb=new StringBuffer();
-                    String line;
-                    while ((line=br.readLine())!=null){
-                        sb.append(line);
+                    JSONObject json = new JSONObject(str);
+                    JSONObject data = json.getJSONObject("data");
+                    JSONArray array = data.getJSONArray("list");
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject jo = array.getJSONObject(i);
+                        GoodsBeen been = new GoodsBeen();
+                        int id = jo.getInt("id");
+                        String title = jo.getString("title");
+                        String image = "http://192.168.4.188/Goods/uploads/"+jo.getString("image");
+                        String price = jo.getString("price");
+                        String issue_time = jo.getString("issue_time");
+                        int state = jo.getInt("state");
+                        been.setId(id);
+                        been.setTitle(title);
+                        been.setImage(image);
+                        been.setIssue_time(issue_time);
+                        been.setPrice(price);
+                        been.setState(state);
+                        list.add(been);
+                        Message msg=hand.obtainMessage();
+                        msg.what=3;
+                        msg.obj=list;
+                        hand.sendMessage(msg);
                     }
-                    br.close();
-                    is.close();
-                    String jsonStr=sb.toString();
-                    Message msg=hand.obtainMessage();
-                    msg.what=3;
-                    msg.obj=jsonStr;
-                    hand.sendMessage(msg);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        });
     }
     /*
 	 * listView的条目点击事件
@@ -268,7 +301,9 @@ public class Fragment_Goods extends Fragment implements PullToRefreshScrollView.
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent(getActivity(), DetailsActivity.class);
-        intent.putExtra("id",id);
+GoodsBeen been= (GoodsBeen) adapterView.getAdapter().getItem(i);
+        intent.putExtra("id",been.getId());
+
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.in_frombottom, R.anim.out_from);
     }

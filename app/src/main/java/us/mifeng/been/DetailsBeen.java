@@ -20,10 +20,30 @@ public class DetailsBeen {
     public String email;//电子邮箱
     public List<String> list;//照片
     public int issue_time;//发布时间
-    public String final_time;//下架时间
     public int follow;//关注数量
     public int state;//状态
     public int owner;//本人所属
+
+    public DetailsBeen() {
+    }
+
+    public DetailsBeen(int id, int user_id, String title, String description, String price, String contact, String mobile, String qq, String wechat, String email, List<String> list, int issue_time, int follow, int state, int owner) {
+        this.id = id;
+        this.user_id = user_id;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.contact = contact;
+        this.mobile = mobile;
+        this.qq = qq;
+        this.wechat = wechat;
+        this.email = email;
+        this.list = list;
+        this.issue_time = issue_time;
+        this.follow = follow;
+        this.state = state;
+        this.owner = owner;
+    }
 
     public int getId() {
         return id;
@@ -119,14 +139,6 @@ public class DetailsBeen {
 
     public void setIssue_time(int issue_time) {
         this.issue_time = issue_time;
-    }
-
-    public String getFinal_time() {
-        return final_time;
-    }
-
-    public void setFinal_time(String final_time) {
-        this.final_time = final_time;
     }
 
     public int getFollow() {
