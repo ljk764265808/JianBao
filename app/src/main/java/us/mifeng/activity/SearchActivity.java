@@ -2,6 +2,7 @@ package us.mifeng.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
@@ -17,8 +18,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import us.mifeng.utils.RecordSQLiteOpenHelper;
 import us.mifeng.view.MeasuredListView;
@@ -28,6 +29,7 @@ import us.mifeng.view.MeasuredListView;
  */
 
 public class SearchActivity extends Activity {
+    private ImageView mBack;
     private EditText et_search;
     private TextView tv_tip;
     private MeasuredListView listView;
@@ -44,7 +46,13 @@ public class SearchActivity extends Activity {
         setContentView(R.layout.item_past);
         // 初始化控件
         initView();
-
+        //返回上一页
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         // 清空搜索历史
         tv_clear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +77,11 @@ public class SearchActivity extends Activity {
                         queryData("");
                     }
                     // TODO 根据输入的内容模糊查询商品，并跳转到另一个界面，由你自己去实现
-                    Toast.makeText(SearchActivity.this, "clicked!", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(SearchActivity.this, "clicked!", Toast.LENGTH_SHORT).show();
+                    String SPstr=et_search.getText().toString();
+                    Intent intent=new Intent(SearchActivity.this,SeekActivity.class);
+                    intent.putExtra("SPstr",SPstr);
+                    startActivity(intent);
                 }
                 return false;
             }
@@ -108,7 +119,7 @@ public class SearchActivity extends Activity {
                 TextView textView = (TextView) view.findViewById(android.R.id.text1);
                 String name = textView.getText().toString();
                 et_search.setText(name);
-                Toast.makeText(SearchActivity.this, name, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SearchActivity.this, name, Toast.LENGTH_SHORT).show();
                 // TODO 获取到item上面的文字，根据该关键字跳转到另一个页面查询，由你自己去实现
             }
         });
@@ -166,13 +177,14 @@ public class SearchActivity extends Activity {
     }
 
     private void initView() {
+        mBack= (ImageView) findViewById(R.id.mBack);
         et_search = (EditText) findViewById(R.id.et_search);
         tv_tip = (TextView) findViewById(R.id.tv_tip);
         listView = (MeasuredListView) findViewById(R.id.listView);
         tv_clear = (TextView) findViewById(R.id.tv_clear);
 
         // 调整EditText左边的搜索按钮的大小
-        Drawable drawable = getResources().getDrawable(R.mipmap.shared_searchbuttom_highlighted);
+        Drawable drawable = getResources().getDrawable(R.mipmap.shared_searchbuttom_normal);
         drawable.setBounds(0, 0, 60, 60);// 第一0是距左边距离，第二0是距上边距离，60分别是长宽
         et_search.setCompoundDrawables(drawable, null, null, null);// 只放左边
     }
