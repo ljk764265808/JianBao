@@ -1,8 +1,5 @@
 package us.mifeng.app;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
 /**
  * Created by k on 2016/11/24.
  */
@@ -11,7 +8,7 @@ public class MInterface {
     /**
      * 服务器的主机地址
      */
-    public static String zhuji = "http://192.168.4.188/Goods/";
+    public static String zhuji = "http://192.168.4.188/Goods";
     /**
      * 注册激活的接口
      */
@@ -64,32 +61,5 @@ public class MInterface {
      * 关注商品
      */
     public static String guanzhu = "/app/item/follow.json";
-
-    /**
-     * 获取登录后的TOKEN值
-     */
-    public static String getSp(Context context){
-        SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
-        String token = sp.getString("token", null);
-        return token;
-    }
-    /**
-     * 获取账户信息
-     */
-    public static int getType(Context context){
-        SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
-        Integer type = sp.getInt("type", 0);
-        return type;
-    }
-    /**
-     * 获取当前账号的名字
-     */
-    public static String getName(Context context){
-        SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
-        String name = sp.getString("name", "");
-
-        return name;
-
-    }
 
 }

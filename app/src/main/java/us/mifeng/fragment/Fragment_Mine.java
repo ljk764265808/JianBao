@@ -9,15 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * Created by k on 2016/11/24.
+ * Created by k on 2016/12/3.
  */
 
 public class Fragment_Mine extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        TextView v = new TextView(getActivity());
-        v.setText("我是个人中心");
-        return v;
+        TextView tv = new TextView(getActivity());
+        tv.setText("我是第三个");
+        return tv;
     }
 }
