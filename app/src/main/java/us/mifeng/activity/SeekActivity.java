@@ -46,7 +46,7 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
     private List<GoodsBeen> list_first = new ArrayList<GoodsBeen>();
     private GoodsAdapter adapter;
     private int max;
-    private String listStr="http://192.168.4.188/Goods/app/item/list.json?token=E4B7D7027E4E4F4BB1EADC70EE963472&curPage=1";
+    private String listStr="http://192.168.4.188/Goods/app/item_list/list.json?token=E4B7D7027E4E4F4BB1EADC70EE963472&curPage=1";
 //    private String listhead="http://192.168.4.188/Goods/app/item/list.json?token=";
 //    private String token;
 //    private String  curPage;

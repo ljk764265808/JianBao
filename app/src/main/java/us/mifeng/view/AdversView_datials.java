@@ -14,11 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import us.mifeng.activity.R;
-import us.mifeng.been.AdverBeen;
 
 /**
  * Created by admin on 2016/11/29.
@@ -33,20 +33,17 @@ public class AdversView_datials implements ViewPager.OnPageChangeListener {
     private Bitmap pointS;//选中的点
     private Bitmap pointN;//没有选中的点
     private List<View> Vplist = new ArrayList<View>();
-    private List<AdverBeen> list;
     private VpAdapter adapter;
     private int index = 0;//当前vp的索引页
     private boolean ThreadFlag = true;
     private View[] views;
     private TimeThread tiemThread;
-    private int[] array;
-    private List<String> list1=new ArrayList<>();
+    private List<String> list1 = new ArrayList<>();
 
-    public AdversView_datials(Context ctx, List<String> list1,int[] array) {
+    public AdversView_datials(Context ctx, List<String> list1) {
         this.ctx = ctx;
         this.list1 = list1;
-        this.array=array;
-        views = new View[list.size()];
+        views = new View[list1.size()];
         initList();
         initView();
         initPoint();
@@ -70,7 +67,7 @@ public class AdversView_datials implements ViewPager.OnPageChangeListener {
 
     //初始化数据
     private void initList() {
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list1.size(); i++) {
             // Log.e("", "1111111"+list.size());
             ImageView mImg = new ImageView(ctx);
             mImg.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -92,7 +89,7 @@ public class AdversView_datials implements ViewPager.OnPageChangeListener {
      * 初始化底部圆点的方法
      * */
     private void initPoint() {
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list1.size(); i++) {
             ImageView img = new ImageView(ctx);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             lp.rightMargin = 10;
@@ -154,7 +151,6 @@ public class AdversView_datials implements ViewPager.OnPageChangeListener {
     };
 
     private class VpAdapter extends PagerAdapter {
-        private int[] arr;
 
         @Override
         public int getCount() {
@@ -168,26 +164,21 @@ public class AdversView_datials implements ViewPager.OnPageChangeListener {
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
+            try {
+                container.addView(Vplist.get(position % Vplist.size()));
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
-            container.addView(Vplist.get(position % Vplist.size()));
 
-            Vplist.get(position % list.size()).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-//                    Intent intent=new Intent(ctx, BitmapActivity.class);
-//                    int i=arr[position%list.size()];
-//                    intent.putExtra("i",i);
-//                    ctx.startActivity(intent);
-
-                }
-            });
             return Vplist.get(position % Vplist.size());
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             try {
-                ((ViewPager) container).removeView(Vplist.get(position % Vplist.size()));
+                container.removeView(Vplist.get(position % Vplist.size()));
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

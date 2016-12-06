@@ -47,23 +47,23 @@ public class MInterface {
     /**
      * 发布的商品
      */
-    public static String fabu = "/app/item/issue.json";
+    public static String fabu = "/app/item_list/issue.json";
     /**
      * 商品列表查询
      */
-    public static String shangpinliebiao = "/app/item/issue.json";
+    public static String shangpinliebiao = "/app/item_list/issue.json";
     /**
      * 商品详细查询
      */
-    public static String xiangqing = "/app/item/detail.json";
+    public static String xiangqing = "/app/item_list/detail.json";
     /**
      * 商品状态变更
      */
-    public static String zhuangtai = "/app/item/modify.json";
+    public static String zhuangtai = "/app/item_list/modify.json";
     /**
      * 关注商品
      */
-    public static String guanzhu = "/app/item/follow.json";
+    public static String guanzhu = "/app/item_list/follow.json";
 
     /**
      * 获取登录后的TOKEN值

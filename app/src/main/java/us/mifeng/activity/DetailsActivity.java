@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,7 +55,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
     private LinearLayout mLinear;
     private List<String> list_url = new ArrayList<>();
 
-    private String urlStr="http://192.168.4.188/Goods/app/item/detail.json";
+    private String urlStr="http://192.168.4.188/Goods/app/item_list/detail.json";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,12 +144,12 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
                 mTv_title.setText(detaBeen.getTitle());
                 mTv_title_details.setText(detaBeen.getTitle());
                 mTv_description.setText(detaBeen.getDescription());
-                mTv_price_details.setText(detaBeen.getPrice());
+                mTv_price_details.setText(""+detaBeen.getPrice());
                 mTv_contact.setText(detaBeen.getContact());
                 mTv_mobile.setText(detaBeen.getMobile());
                 //发布时间
-                mTv_issue_time.setText(detaBeen.getIssue_time());
-                mTv_follow.setText(detaBeen.getFollow());
+                mTv_issue_time.setText(""+detaBeen.getIssue_time());
+                mTv_follow.setText(""+detaBeen.getFollow());
 
                 if(Integer.valueOf(detaBeen.getState())==0){
                     mTv_state.setText("正常");
@@ -161,17 +163,20 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
                 }else if(Integer.valueOf(detaBeen.getOwner())==1){
                     mTv_owner.setText("是");
                 }
-                if(detaBeen.getQq().equals("")){
+                if(TextUtils.isEmpty(detaBeen.getQq())){
+                    mTv_qq.setText("");
                     mLine_qq.setVisibility(View.GONE);
                 }else{
                     mTv_qq.setText(detaBeen.getQq());
                 }
-                if(detaBeen.getWechat().equals("")){
+                if(TextUtils.isEmpty(detaBeen.getWechat())){
+                    mTv_wechat.setText("");
                     mLine_wechat.setVisibility(View.GONE);
                 }else{
                     mTv_wechat.setText(detaBeen.getWechat());
                 }
-                if(detaBeen.getEmail().equals("")){
+                if(TextUtils.isEmpty(detaBeen.getEmail())){
+                    mTv_email.setText("");
                     mLine_email.setVisibility(View.GONE);
                 }else{
                     mTv_email.setText(detaBeen.getEmail());
@@ -182,8 +187,8 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
                     image.setImageResource(R.mipmap.detail);
                     mLinear.addView(image);
                 }else{
-                    arr=new int[list.size()];
-                    Aview_details=new AdversView_datials(DetailsActivity.this,list,arr);
+                    Log.e("","list"+list.size());
+                    Aview_details=new AdversView_datials(DetailsActivity.this,list);
                     mLinear.addView(Aview_details.getView());
                 }
 
