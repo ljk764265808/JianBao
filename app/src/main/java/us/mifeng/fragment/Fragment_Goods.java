@@ -53,7 +53,7 @@ public class Fragment_Goods extends Fragment implements PullToRefreshScrollView.
     }
 
     private void intList() {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 5; i++) {
             list.add("");
         }
     }
@@ -154,7 +154,7 @@ public class Fragment_Goods extends Fragment implements PullToRefreshScrollView.
 
     private void loadMore() {
         int count = adapter.getCount();
-        for (int i = count; i < count + 30; i++) {
+        for (int i = count; i < count + 5; i++) {
             list.add("第" + i + "条数据");
         }
     }

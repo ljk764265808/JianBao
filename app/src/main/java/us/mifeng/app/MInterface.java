@@ -2,6 +2,7 @@ package us.mifeng.app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Environment;
 
 /**
  * Created by k on 2016/11/24.
@@ -64,6 +65,9 @@ public class MInterface {
      * 关注商品
      */
     public static String guanzhu = "/app/item/follow.json";
+
+
+    public static final String FACEURL=Environment.getExternalStorageDirectory()+"/myHead/faceicon.jpg";
 
     /**
      * 获取登录后的TOKEN值

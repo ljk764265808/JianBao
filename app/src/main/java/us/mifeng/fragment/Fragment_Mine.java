@@ -2,6 +2,7 @@ package us.mifeng.fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -37,6 +39,7 @@ import us.mifeng.activity.MyFaBuActivity;
 import us.mifeng.activity.MyGuanZhuActivity;
 import us.mifeng.activity.R;
 import us.mifeng.activity.ShezhiActivity;
+import us.mifeng.app.MInterface;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -47,8 +50,6 @@ import static android.app.Activity.RESULT_OK;
 public class Fragment_Mine extends Fragment {
     @InjectView(R.id.yonghuming_text)
     TextView yonghumingText;
-    @InjectView(R.id.drawee_img)
-    ImageView image;
     @InjectView(R.id.Image_shezhi)
     ImageView ImageShezhi;
     @InjectView(R.id.myfabu)
@@ -61,18 +62,23 @@ public class Fragment_Mine extends Fragment {
     LinearLayout mybangzhu;
     @InjectView(R.id.mylianxikefu)
     LinearLayout mylianxikefu;
+    @InjectView(R.id.drawee_img)
+    ImageView draweeImg;
     private Button btn_picture, btn_photo, btn_cancle;
     private static String path = "/sdcard/myHead/";
     private Bitmap head;
-    private ImageView draweeView;
+    private File fileB;
+    private File files;
+    private String originPath;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.mine_layout, null);
+        View v = inflater.inflate(R.layout.mine_layout, container, false);
         ButterKnife.inject(this, v);
-        draweeView = (ImageView) v.findViewById(R.id.drawee_img);
-        // Uri uri = Uri.parse(String.valueOf(R.mipmap.b8));
-        // draweeView.setImageURI(uri);
+        File file = new File(MInterface.FACEURL);
+        if (file.exists()) {
+            draweeImg.setImageURI(Uri.parse(MInterface.FACEURL));
+        }
         return v;
     }
 
@@ -82,11 +88,11 @@ public class Fragment_Mine extends Fragment {
         ButterKnife.reset(this);
     }
 
-    @OnClick({R.id.yonghuming_text, R.id.drawee_img, R.id.Image_shezhi,R.id.myfabu, R.id.myguanzhu,
-             R.id.myyaoqingma,
-             R.id.mybangzhu,
-             R.id.mylianxikefu,
-            })
+    @OnClick({R.id.yonghuming_text, R.id.drawee_img, R.id.Image_shezhi, R.id.myfabu, R.id.myguanzhu,
+            R.id.myyaoqingma,
+            R.id.mybangzhu,
+            R.id.mylianxikefu,
+    })
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.yonghuming_text:
@@ -115,7 +121,7 @@ public class Fragment_Mine extends Fragment {
         }
     }
 
-    private void showDialog() {
+    private void showDialog(){
         View view = getLayoutInflater(getArguments()).inflate(R.layout.dialog_item, null);
         final Dialog dialog = new Dialog(getActivity(), R.style.transparentFrameWindowStyle);
         dialog.setContentView(view, new WindowManager.LayoutParams(WindowManager.LayoutParams.FILL_PARENT, ActionBar.LayoutParams.WRAP_CONTENT));
@@ -166,7 +172,45 @@ public class Fragment_Mine extends Fragment {
         switch (requestCode) {
             case 1:
                 if (resultCode == RESULT_OK) {
-                    cropPhoto(data.getData());// 裁剪图片
+                    fileB = Environment.getExternalStorageDirectory();
+                    Uri data1 = data.getData();
+                    Cursor cursor = getActivity().getContentResolver().query(data1, null, null, null, null);
+                    if (cursor != null && cursor.moveToFirst()) {
+                        originPath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+                    }
+
+                    String newOriginPath = originPath.replace("file://", "");
+                    File originFile = new File(newOriginPath);
+                    try {
+                        FileInputStream originFI = new FileInputStream(originFile);
+                        String s = data1.toString();
+                        File dir = new File(fileB, "/myHead/");
+                        if (!dir.exists()) {
+                            dir.mkdirs();
+                        }
+                        files = new File(dir, "faceicon.jpg");
+                        FileOutputStream os = new FileOutputStream(files);
+                        int temp = 0;
+                        byte[] buf = new byte[1024];
+                        while ((temp = originFI.read(buf)) != -1) {
+                            os.write(buf, 0, temp);
+                        }
+                        os.close();
+                        originFI.close();
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                File file = new File(MInterface.FACEURL);
+                                Uri uri = Uri.fromFile(file);
+                                cropPhoto(uri);
+                                draweeImg.setImageURI(uri);
+                            }
+                        });
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 break;
@@ -186,8 +230,9 @@ public class Fragment_Mine extends Fragment {
                          * 上传服务器代码
                          */
                         setPicToView(head);// 保存在SD卡中
-                        draweeView.setImageBitmap(toRoundBitmap(head));// 用ImageView显示出来
-                        //draweeView.setImageBitmap(head);
+                        draweeImg.setImageBitmap(toRoundBitmap(head));// 用ImageView显示出来
+                        // draweeImg.setImageBitmap(head);
+                        //draweeImg.setImageURI(String.valueOf(toRoundBitmap(head)));
                     }
                 }
                 break;
@@ -229,7 +274,6 @@ public class Fragment_Mine extends Fragment {
         try {
             b = new FileOutputStream(fileName);
             mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
