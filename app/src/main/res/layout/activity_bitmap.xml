@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.admin.jianbao.view.ScaleImg
+    <us.mifeng.view.ScaleImg
         android:id="@+id/mImg_bitmap"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

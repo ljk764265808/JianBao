@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import us.mifeng.been.AdverBeen;
+import us.mifeng.been.GoodsBeen;
 
 /**
  * 处理整个项目中所有的json解析
@@ -42,11 +43,13 @@ public class JsonUtils {
             }
         } else if (index == 2) {
             if (jsonStr != null) {
-                //list=getNews(jsonStr);
+                list = getGoods(jsonStr);
             }
         }
         return list;
     }
+
+
 
     private List getAdvers(String jsonStr) {
         List<AdverBeen> list = new ArrayList<AdverBeen>();
@@ -67,5 +70,40 @@ public class JsonUtils {
             e.printStackTrace();
         }
         return list;
+    }
+
+    private List getGoods(String jsonStr) {
+        List<GoodsBeen> list = new ArrayList<GoodsBeen>();
+        try {
+            JSONObject json = new JSONObject(jsonStr);
+            JSONObject data = json.getJSONObject("data");
+            JSONArray array = data.getJSONArray("list");
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject jo = array.getJSONObject(i);
+                GoodsBeen been = new GoodsBeen();
+                int id = jo.getInt("id");
+                String title = jo.getString("title");
+                String image = jo.getString("image");
+                String price = jo.getString("price");
+                String issue_time = jo.getString("issue_time");
+                int state = jo.getInt("state");
+                been.setId(id);
+                been.setTitle(title);
+                been.setImage(image);
+                been.setIssue_time(issue_time);
+                been.setPrice(price);
+                been.setState(state);
+                list.add(been);
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    private void getDetails(String jsonStr) {
+
+
     }
 }

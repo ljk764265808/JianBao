@@ -23,7 +23,7 @@
             <EditText
                 android:id="@+id/mEdit_SP"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:clickable="false"
                 android:background="#f26f03"
@@ -31,12 +31,6 @@
                 android:hint="搜索商品"
                 android:textColorHint="#cccccc" />
 
-            <Button
-                android:id="@+id/mBtn_seek"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:background="@mipmap/shared_searchbuttom_normal" />
         </LinearLayout>
     </LinearLayout>
 

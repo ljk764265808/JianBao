@@ -15,10 +15,19 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import us.mifeng.adapter.GoodsAdapter;
+import us.mifeng.been.GoodsBeen;
+import us.mifeng.utils.JsonUtils;
 import us.mifeng.view.MeasuredListView;
 import us.mifeng.view.PullToRefreshScrollView;
 
@@ -34,25 +43,27 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
     private PullToRefreshScrollView mSc_seek;
     private View centerView;
     private MeasuredListView mLv_seek;
-    private List<String> list = new ArrayList<String>();
+    private List<GoodsBeen> list_goods;
+    private List<GoodsBeen> list_first = new ArrayList<GoodsBeen>();
     private GoodsAdapter adapter;
-
+    private JsonUtils utils;
+    private int max;
+    private String listStr="http://192.168.4.188/Goods/app/item/list.json?token=E4B7D7027E4E4F4BB1EADC70EE963472&curPage=1";
+//    private String listhead="http://192.168.4.188/Goods/app/item/list.json?token=";
+//    private String token;
+//    private String  curPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seek);
         initView();
-        intList();
     }
 
-    private void intList() {
-        for (int i = 0; i < 5; i++) {
-            list.add("");
-        }
-    }
+
 
     private void initView() {
+        getListStr(listStr);
         mBtn_back_seek= (LinearLayout) findViewById(R.id.mBtn_back_seek);
         mEdit_SP_seek = (EditText) findViewById(R.id.mEdit_SP_seek);
         mBtn_seek_seek = (Button) findViewById(R.id.mBtn_seek_seek);
@@ -64,9 +75,6 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
         centerView = View.inflate(this, R.layout.view_seek, null);
         mSc_seek.setCenterView(centerView);
         mLv_seek = (MeasuredListView) centerView.findViewById(R.id.mLv_seek);
-        adapter = new GoodsAdapter(this, list);
-        mLv_seek.setAdapter(adapter);
-        mSc_seek.MesureListHeight(mLv_seek);
         mSc_seek.setCall(this);
 
         String SP = getIntent().getStringExtra("ShangPin");
@@ -112,13 +120,33 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
             super.handleMessage(msg);
             if (msg.what == 0) {
                 mSc_seek.complate();
-                //加载
+                //再次向服务器发送请求，然后加载更多
                 loadMore();
                 adapter.notifyDataSetChanged();
-                mSc_seek.MesureListHeight(mLv_seek);
-            } else if (msg.what == 1) {
+                if(adapter.getCount()==max){
+                    Toast.makeText(SeekActivity.this, "已经滑到底部，暂无更新", Toast.LENGTH_SHORT).show();
+                    mLv_seek.setSelection(max);
+                }
+            }
+            if (msg.what == 1) {
                 mSc_seek.complate();
                 Toast.makeText(SeekActivity.this, "联网失败，稍后刷新！", Toast.LENGTH_SHORT).show();
+            }
+            if(msg.what==2){
+                String goodsStr1= (String) msg.obj;
+                utils=new JsonUtils(SeekActivity.this,goodsStr1,2);
+                list_goods=utils.BuildList(goodsStr1);
+                for(int i=0;i<5;i++){
+                    GoodsBeen been=list_goods.get(i);
+                    list_first.add(been);
+                }
+                if(adapter!=null){
+                    adapter.RefrashAdapter(list_first);
+                }else{
+                    adapter=new GoodsAdapter(SeekActivity.this,list_first);
+                mLv_seek.setAdapter(adapter);
+
+            }
             }
         }
     };
@@ -156,12 +184,55 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
     }
 
     private void loadMore() {
-        int count = adapter.getCount();
-        for (int i = count; i < count + 5; i++) {
-            list.add("");
+        max=list_goods.size();
+        int count=adapter.getCount();
+        if((count+5)<max){
+            for(int i=count;i<count+5;i++){
+                GoodsBeen been=list_goods.get(i);
+                list_goods.add(been);
+            }
+        }else{
+            for(int i=count;i<max;i++){
+                GoodsBeen been=list_goods.get(i);
+                list_first.add(been);
+            }
         }
     }
-
+    /*
+      * 开启子线程 ---》获取json字符串串的方法
+      * */
+    private void getListStr(final String listStr){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+//                token="E4B7D7027E4E4F4BB1EADC70EE963472";
+//                curPage="1";
+//                listStr=listhead+token+curPage;
+                try {
+                    URL url=new URL(listStr);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    InputStream is = conn.getInputStream();
+                    BufferedReader br=new BufferedReader(new InputStreamReader(is));
+                    StringBuffer sb=new StringBuffer();
+                    String line;
+                    while ((line=br.readLine())!=null){
+                        sb.append(line);
+                    }
+                    br.close();
+                    is.close();
+                    String jsonStr=sb.toString();
+                    Message msg=hand.obtainMessage();
+                    msg.what=2;
+                    msg.obj=jsonStr;
+                    hand.sendMessage(msg);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

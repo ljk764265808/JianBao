@@ -21,6 +21,7 @@
                 android:layout_gravity="center"
                 android:background="@mipmap/mm_title_back" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/mTv_title"
             android:layout_width="wrap_content"
@@ -44,15 +45,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
                 android:background="@mipmap/tupian4"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
                 android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/mTv_issue_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="2016-9-9" />
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/mTv_issue_time"
+                        android:text="发布时间：" />
+
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -98,10 +120,31 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="关注数量"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/mTv_follow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:id="@+id/mLine_guanzhu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -125,6 +168,56 @@
                     android:layout_height="1dp"
                     android:background="#bab8b8" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="是否本人所属：" />
+
+                        <TextView
+                            android:id="@+id/mTv_owner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#199ddf"
+                            android:text="是" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="状态：" />
+
+                        <TextView
+                            android:id="@+id/mTv_state"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#199ddf"
+                            android:text="正常" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -132,7 +225,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -150,17 +244,39 @@
                         android:text="缓存其实和电脑上缓存的概念是一样的 缓存充当一个缓冲的作用,因为内存与CPU的速度是不一致的,内存比CPU慢上好多倍,在处理数据时,没有缓存,将会大大浪费CPU的资源,而缓存的速度接近于CPU,在处理数据的时候,系统将内存里的信息先存在缓存上,然后CPU从缓存内读取数据的速度就会很快,大大的提升了系统的性能 但时间长, 缓存是就会储存许多过去的信息而占用大量空间,所以需要清理。" />
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#bab8b8" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="卖家联系方式："
-                        android:textSize="16sp" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="联系人："
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/mTv_contact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="杜先生"
+                            android:textColor="#3c08f7"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
 
                     <TextView
                         android:layout_width="1dp"
@@ -232,6 +348,27 @@
 
                             <TextView
                                 android:id="@+id/mTv_qq"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="138383845"
+                                android:textColor="#008cff" />
+
+                        </LinearLayout>
+<LinearLayout
+                            android:id="@+id/mLine_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Email："
+                                android:textColor="#02ab02" />
+
+                            <TextView
+                                android:id="@+id/mTv_email"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="138383845"

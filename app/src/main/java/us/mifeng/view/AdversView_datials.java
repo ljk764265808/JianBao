@@ -39,10 +39,13 @@ public class AdversView_datials implements ViewPager.OnPageChangeListener {
     private boolean ThreadFlag = true;
     private View[] views;
     private TimeThread tiemThread;
+    private int[] array;
+    private List<String> list1=new ArrayList<>();
 
-    public AdversView_datials(Context ctx, List<AdverBeen> list) {
+    public AdversView_datials(Context ctx, List<String> list1,int[] array) {
         this.ctx = ctx;
-        this.list = list;
+        this.list1 = list1;
+        this.array=array;
         views = new View[list.size()];
         initList();
         initView();
@@ -75,7 +78,7 @@ public class AdversView_datials implements ViewPager.OnPageChangeListener {
             mImg.setImageResource(R.mipmap.tupian1);
             //图片的异步加载
 
-            Glide.with(ctx).load(list.get(i).getImgpath()).into(mImg);
+            Glide.with(ctx).load(list1.get(i)).into(mImg);
             //Log.e("", "22222"+list.get(i).getImgpath());
             Vplist.add(mImg);
             //Log.e("", "33333333"+Vplist.size());

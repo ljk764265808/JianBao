@@ -7,17 +7,24 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import us.mifeng.activity.R;
+import us.mifeng.been.GoodsBeen;
 
 public class GoodsAdapter extends BaseAdapter {
     private Context ctx;
-    private List<String> list;
+    private List<GoodsBeen> list;
 
-    public GoodsAdapter(Context ctx, List<String> list) {
+    public GoodsAdapter(Context ctx, List<GoodsBeen> list) {
         this.ctx = ctx;
         this.list = list;
+    }
+    public void RefrashAdapter(List<GoodsBeen> list){
+        this.list=list;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -48,9 +55,9 @@ public class GoodsAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.mItem_img.setImageResource(R.mipmap.shouji);
-        //holder.mItem_title.setText(list.get(position));
-       //holder.mItem_price.setText(list.get(position));
+        holder.mItem_title.setText(list.get(position).getTitle());
+       holder.mItem_price.setText(list.get(position).getPrice());
+        Glide.with(ctx).load(list.get(position).getImage()).into(holder.mItem_img);
         return convertView;
     }
 

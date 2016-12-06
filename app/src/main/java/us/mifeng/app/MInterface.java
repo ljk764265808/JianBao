@@ -11,7 +11,7 @@ public class MInterface {
     /**
      * 服务器的主机地址
      */
-    public static String zhuji = "http://192.168.4.188/Goods/";
+    public static String zhuji = "http://192.168.4.188/Goods";
     /**
      * 注册激活的接口
      */
