@@ -23,7 +23,6 @@ import java.net.URL;
 import java.util.List;
 
 import us.mifeng.been.AdverBeen;
-import us.mifeng.utils.JsonUtils;
 import us.mifeng.view.AdversView_datials;
 
 /**
@@ -42,7 +41,6 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
     private LinearLayout mLinear;
     private List<AdverBeen> list;
     private String urlStr="http://apis.juhe.cn/cook/query?key=6a487def5ec129b0a42d64c21bf6a0f0&menu=%E8%A5%BF%E7%BA%A2%E6%9F%BF&rn=10&pn=3";
-    private JsonUtils utils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,9 +105,9 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
             super.handleMessage(msg);
             if(msg.what==1){
                 String jsonStr=(String) msg.obj;
-                utils=new JsonUtils(DetailsActivity.this,jsonStr,1);
+               // utils=new JsonUtils(DetailsActivity.this,jsonStr,1);
                 //准备接受json解析封装好的list集合
-                list=utils.BuildList(jsonStr);
+               // list=utils.BuildList(jsonStr);
                 if(list!=null){
                     Aview_details=new AdversView_datials(DetailsActivity.this, list);
                     mLinear.addView(Aview_details.getView());
