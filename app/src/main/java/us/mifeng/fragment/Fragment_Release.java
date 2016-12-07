@@ -268,7 +268,7 @@ public class Fragment_Release extends Fragment {
                 super.handleMessage(msg);
             }
         };
-
+//测试提交
         public void loading() {
             new Thread(new Runnable() {
                 public void run() {
