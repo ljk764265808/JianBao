@@ -7,34 +7,54 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FFF">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="200dp"
         android:orientation="vertical"
         >
-        <GridView
-            android:id="@+id/noScrollgridview"
-            android:layout_width="fill_parent"
-            android:layout_height="190dp"
-            android:background="#FFF"
-            android:layout_margin="10dp"
-            android:horizontalSpacing="5dp"
-            android:verticalSpacing="5dp"
-            android:numColumns="3"
-            android:columnWidth="90dp"
-            android:stretchMode="columnWidth"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
             android:gravity="center"
-            >
-        </GridView>
-
+            android:layout_weight="1">
+            <ImageButton
+                android:id="@+id/iv1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                android:background="@mipmap/tianjiazhaopian"
+                />
+            <ImageButton
+                android:id="@+id/iv2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="fitXY"
+                android:background="@mipmap/tianjiazhaopian"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                />
+            <ImageButton
+                android:id="@+id/iv3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/tianjiazhaopian"
+                android:scaleType="fitXY"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                />
+            </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="(友情提示：上传照片最少2张，最多不超过5张)"
+            android:text="(友情提示：上传照片数量应不多于3张)"
             android:textSize="16sp"
-            android:layout_marginLeft="16dp"/>
+            android:layout_marginLeft="16dp"
+            android:textColor="#0F0"
+            />
 
     </LinearLayout>
 
@@ -47,7 +67,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            >
 
             <TextView
                 android:id="@+id/tv_name"
@@ -56,7 +77,8 @@
                 android:text="宝贝名称:"
                 android:textSize="16sp"
                 android:layout_margin="12dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textColor="#000"/>
 
             <EditText
                 android:id="@+id/et_title"
@@ -65,7 +87,8 @@
                 android:hint="请输入宝贝名称"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/et_kuang1"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:textColor="#000"/>
 
         </LinearLayout>
 
@@ -83,7 +106,7 @@
                 android:layout_gravity="center"
                 android:textSize="16sp"
                 android:layout_marginLeft="12dp"
-                />
+                android:textColor="#000"/>
 
             <EditText
                 android:id="@+id/et_miaoshu"
@@ -91,7 +114,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:background="@drawable/et_kuang2"
-                android:hint="请输入宝贝描述"/>
+                android:hint="请输入宝贝描述"
+                android:textColor="#000"/>
 
         </LinearLayout>
 
@@ -105,7 +129,7 @@
                 android:text="宝贝价格:"
                 android:textSize="16sp"
                 android:layout_marginLeft="12dp"
-                />
+                android:textColor="#000"/>
 
             <EditText
                 android:id="@+id/et_price"
@@ -113,7 +137,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginLeft="12dp"
-                android:background="@drawable/et_kuang3"/>
+                android:background="@drawable/et_kuang3"
+                android:textColor="#000"/>
 
         </LinearLayout>
 
@@ -130,7 +155,7 @@
                 android:text="手机号:"
                 android:textSize="16sp"
                 android:layout_marginLeft="12dp"
-                />
+                android:textColor="#000"/>
 
             <EditText
                 android:id="@+id/et_phone"
@@ -138,7 +163,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:background="@null"
-                android:hint="请输入手机号"/>
+                android:hint="请输入手机号"
+                android:textColorHint="#000"
+                android:textColor="#000"/>
 
         </LinearLayout>
 
@@ -154,7 +181,8 @@
                 android:text="QQ号:"
                 android:textSize="16sp"
                 android:layout_marginLeft="12dp"
-                />
+                android:textColor="#000"
+                android:textColorHint="#000"/>
 
             <EditText
                 android:id="@+id/et_qq"
@@ -162,7 +190,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="22dp"
                 android:background="@null"
-                android:hint="请输入qq号"/>
+                android:hint="请输入qq号"
+                android:textColor="#000"
+                android:textColorHint="#000" />
 
         </LinearLayout>
 
@@ -178,7 +208,7 @@
                 android:text="微信号:"
                 android:textSize="16sp"
                 android:layout_marginLeft="12dp"
-                />
+                android:textColor="#000"/>
 
             <EditText
                 android:id="@+id/et_weixin"
@@ -186,7 +216,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:background="@null"
-                android:hint="请输入微信号"/>
+                android:hint="请输入微信号"
+                android:textColor="#000"
+                android:textColorHint="#000"/>
 
         </LinearLayout>
 
