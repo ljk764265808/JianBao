@@ -1,2 +1,4 @@
 /build
 /build.gradle
+.idea/codeStyleSettings.xml
+/build.gradle

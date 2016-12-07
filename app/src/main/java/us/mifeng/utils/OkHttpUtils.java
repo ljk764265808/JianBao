@@ -19,20 +19,20 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by k on 2016/11/24.
+ * Created by k on 2016/12/6.
  */
 
 public class OkHttpUtils {
+    //1.
     public interface GetEntityCallBack{
         void getEntity(Object obj);
     }
-
+    //2.
     public static GetEntityCallBack callBack;
-
+    //3.
     public static  void setGetEntityCallBack(GetEntityCallBack callBack1){
         callBack=callBack1;
     }
-
     public static Object o;
     private static final String TAG = "OkHttpUtils";
 
@@ -84,8 +84,7 @@ public class OkHttpUtils {
 
         FormBody.Builder builder = new FormBody.Builder();
         Set<Map.Entry<String, String>> entries = map.entrySet();
-        for (Map.Entry<String, String> entry:entries
-                ) {
+        for (Map.Entry<String, String> entry:entries) {
             builder.add(entry.getKey(),entry.getValue());
         }
         FormBody body = builder.build();
@@ -98,9 +97,6 @@ public class OkHttpUtils {
         Call call = client.newCall(request);
 
         call.enqueue(new Callback() {
-
-
-
 
             @Override
             public void onFailure(Call call, IOException e) {
