@@ -10,7 +10,6 @@ import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,7 +37,6 @@ import us.mifeng.view.MeasuredListView;
 import us.mifeng.view.PullToRefreshScrollView;
 
 import static java.lang.String.valueOf;
-import static us.mifeng.activity.R.id.mBtn_seek_seek;
 
 /**
  * Created by admin on 2016/11/28.
@@ -76,8 +74,6 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
     private void initView() {
         mBack_seek= (ImageView) findViewById(R.id.mBack_seek);
         mEdit_SP_seek = (EditText) findViewById(R.id.mEdit_SP_seek);
-        mBtn_seek_seek = (Button) findViewById(mBtn_seek_seek);
-        mLine_sp = (LinearLayout) findViewById(R.id.mLine_sp);
         mSc_seek = (PullToRefreshScrollView) findViewById(R.id.mSC_seek);
         mEdit_SP_seek.setInputType(InputType.TYPE_NULL);
         mSc_seek.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
@@ -87,9 +83,6 @@ public class SeekActivity extends Activity implements View.OnClickListener, Pull
         mSc_seek.setCall(this);
         String SP = getIntent().getStringExtra("SPstr");
         mEdit_SP_seek.setText(SP);
-        mBtn_back_seek.setOnClickListener(this);
-        mBtn_seek_seek.setOnClickListener(this);
-        mLine_sp.setOnClickListener(this);
         mBack_seek.setOnClickListener(this);
         mLv_seek.setOnItemClickListener(this);
         mEdit_SP_seek.setOnClickListener(this);
