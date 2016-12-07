@@ -40,8 +40,7 @@ import static java.lang.String.valueOf;
  */
 
 public class DetailsActivity extends Activity implements View.OnClickListener {
-    private int[] arr;
-    private LinearLayout mBtn_back_details;
+    private ImageView mBack_details;
     private ImageView mImg_guanzhu;
     private LinearLayout mLine_qq,mLine_wechat,mLine_email;
     private TextView mTv_qq,mTv_wechat,mTv_mobile,mTv_email,mTv_follow,mTv_issue_time;
@@ -73,7 +72,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
     }
 
     private void initView() {
-        mBtn_back_details= (LinearLayout) findViewById(R.id.mBtn_back_details);
+        mBack_details= (ImageView) findViewById(R.id.mBack_details);
         mImg_guanzhu= (ImageView) findViewById(R.id.mImg_guanzhu);
         mTv_guanzhu= (TextView) findViewById(R.id.mTv_guanzhu);
         mLine_guanzhu= (LinearLayout) findViewById(R.id.mLine_guanzhu);
@@ -95,7 +94,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
         mTv_description= (TextView) findViewById(R.id.mTv_description);
         mTv_title= (TextView) findViewById(R.id.mTv_title);
 
-        mBtn_back_details.setOnClickListener(this);
+        mBack_details.setOnClickListener(this);
         mLine_guanzhu.setOnClickListener(this);
         mTv_mobile.setOnClickListener(this);
     }
@@ -104,7 +103,7 @@ public class DetailsActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         int ID=view.getId();
         switch (ID){
-            case R.id.mBtn_back_details:
+            case R.id.mBack_details:
                 this.finish();
                 break;
             case R.id.mLine_guanzhu:

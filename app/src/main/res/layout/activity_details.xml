@@ -9,18 +9,14 @@
         android:layout_height="40dp"
         android:background="#f29203">
 
-        <LinearLayout
-            android:id="@+id/mBtn_back_details"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
 
-            <Button
+            <ImageView
+                android:id="@+id/mBack_details"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
                 android:background="@mipmap/mm_title_back" />
-        </LinearLayout>
 
         <TextView
             android:id="@+id/mTv_title"
