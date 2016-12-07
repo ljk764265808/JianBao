@@ -18,7 +18,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,6 +28,10 @@
         <activity android:name=".SeekActivity"></activity>
         <activity android:name=".DetailsActivity"></activity>
         <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".MyFaBuActivity"></activity>
+        <activity android:name=".MyGuanZhuActivity"></activity>
+        <activity android:name=".ShezhiActivity"></activity>
+        <activity android:name=".GeRenZiLiao"></activity>
     </application>
 
 </manifest>

@@ -8,8 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fa5204">
-
-
             <ImageView
                 android:id="@+id/mBack_seek"
                 android:layout_width="30dp"
