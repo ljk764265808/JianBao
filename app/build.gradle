@@ -36,4 +36,5 @@ dependencies {
     compile 'com.commit451:NativeStackBlur:1.0.2'
     compile 'jp.wasabeef:fresco-processors:2.0.0'
     compile 'com.orhanobut:Logger:1.1'
+    compile project(':library')
 }

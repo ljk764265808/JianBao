@@ -50,12 +50,12 @@ public class LoginActivity extends Activity {
     private HashMap<String, String> map;
     private Login login;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
-
         isKeepPassword();
         initLister();
     }
@@ -157,7 +157,7 @@ public class LoginActivity extends Activity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ShowUtils.show(LoginActivity.this, "其他不知名错误");
+                    ShowUtils.show(LoginActivity.this, "请正确输入");
                 }
             });
         }

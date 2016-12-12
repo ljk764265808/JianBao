@@ -11,10 +11,12 @@ import java.util.ArrayList;
  */
 
 public class Framework_Adapter extends FragmentPagerAdapter {
-    private ArrayList<Fragment> list=new ArrayList<Fragment>();
+    private ArrayList<Fragment> list = new ArrayList<Fragment>();
+
     public Framework_Adapter(FragmentManager fm) {
         super(fm);
     }
+
     @Override
     public Fragment getItem(int arg0) {
         return list.get(arg0);

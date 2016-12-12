@@ -7,4 +7,5 @@
     <color name="colorGray">#cfcbcb</color>
     <color name="colorGoomba">#AD6340</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorMain">#FF4E1E</color>
 </resources>
